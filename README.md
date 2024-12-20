@@ -41,3 +41,11 @@ blog-service
 | 更新指定文章 |   PUT    | /articles/:id |
 | 获取指定文章 |   GET    | /articles/:id |
 | 获取文章列表 |   GET    |   /articles   |
+
+## 公共组件
+
+1. 错误码标准化
+2. 配置管理
+3. 数据库连接
+4. 日志写入
+5. 响应处理
