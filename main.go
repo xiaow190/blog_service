@@ -7,6 +7,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/go-programming-tour-book/blog_service/global"
+	"github.com/go-programming-tour-book/blog_service/internal/model"
 	"github.com/go-programming-tour-book/blog_service/internal/routers"
 	"github.com/go-programming-tour-book/blog_service/pkg/setting"
 )
@@ -18,6 +19,11 @@ func init() {
 	err := setupSetting()
 	if err != nil {
 		log.Fatalf("init.setupSetting err: %v", err)
+	}
+
+	err = setupEingine()
+	if err != nil {
+		log.Fatalf("init.setupEingine err: %v", err)
 	}
 }
 
@@ -57,5 +63,14 @@ func setupSetting() error {
 	}
 	global.ServerSetting.ReadTimeout *= time.Second
 	global.ServerSetting.WriteTimeout *= time.Second
+	return nil
+}
+
+func setupEingine() error {
+	var err error
+	global.DBEingine, err = model.NewDBEngine(global.DatabaseSetting)
+	if err != nil {
+		return nil
+	}
 	return nil
 }
