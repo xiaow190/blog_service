@@ -36,7 +36,10 @@ func init() {
 }
 
 // 修改服务端配置
-
+// @title 博客系统
+// @version 1.0
+// @description go 语言编程之旅: 一起用go做项目
+// @termsOfService https://github.com/xiaow190/blog_service.git
 func main() {
 
 	gin.SetMode(global.ServerSetting.RunMode)
