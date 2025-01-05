@@ -9,7 +9,9 @@ import (
 	"github.com/go-programming-tour-book/blog_service/global"
 	"github.com/go-programming-tour-book/blog_service/internal/model"
 	"github.com/go-programming-tour-book/blog_service/internal/routers"
+	"github.com/go-programming-tour-book/blog_service/pkg/logger"
 	"github.com/go-programming-tour-book/blog_service/pkg/setting"
+	"gopkg.in/natefinch/lumberjack.v2"
 )
 
 // 程序执行顺序： 全局变量初始化--> init方法 --> main方法
@@ -25,11 +27,18 @@ func init() {
 	if err != nil {
 		log.Fatalf("init.setupEingine err: %v", err)
 	}
+
+	err = setupLogger()
+	if err != nil {
+		log.Fatalf("init.setupLogger err: %v", err)
+	}
+
 }
 
 // 修改服务端配置
 
 func main() {
+
 	gin.SetMode(global.ServerSetting.RunMode)
 	router := routers.NewRouter()
 	s := &http.Server{
@@ -72,5 +81,18 @@ func setupEingine() error {
 	if err != nil {
 		return nil
 	}
+	return nil
+}
+
+// 初始化全局变量Logger
+
+func setupLogger() error {
+	fileName := global.AppSetting.LogSavePath + "/" + global.AppSetting.LogFileName + global.AppSetting.LogFileExt
+	global.Logger = logger.NewLogger(&lumberjack.Logger{
+		Filename:  fileName,
+		MaxSize:   600,
+		MaxAge:    10,
+		LocalTime: true,
+	}, "", log.LstdFlags).WithCaller(2)
 	return nil
 }
