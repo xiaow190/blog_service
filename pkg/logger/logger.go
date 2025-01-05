@@ -24,7 +24,7 @@ const (
 )
 
 func (l Level) String() string {
-	switch 1 {
+	switch l {
 	case LevelDebug:
 		return "debug"
 	case LevelInfo:
