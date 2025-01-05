@@ -1,1 +1,3 @@
 2025/01/05 13:22:20 {"callers":["D:/go_project/go-programming-tour-book/blog_service/main.go: 31 main.init.0"],"level":"info","message":"xiaowei: go-programming-tour-book/blog-service","time":1736054540667662300}
+2025/01/05 21:37:06 {"callers":["D:/go_project/go-programming-tour-book/blog_service/main.go: 31 main.init.0"],"level":"error","message":"app.BindAndValid errs: State必须是[0 1]中的一个","time":1736084226050892900}
+2025/01/05 21:37:13 {"callers":["D:/go_project/go-programming-tour-book/blog_service/main.go: 31 main.init.0"],"level":"error","message":"app.BindAndValid errs: State必须是[0 1]中的一个","time":1736084233580608200}
